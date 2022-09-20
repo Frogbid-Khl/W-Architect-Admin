@@ -79,7 +79,7 @@ $db_handle = new DBController();
                         $update = $db_handle->insertQuery("update review set stats='$status' where id=" . $_GET['edit'] . "");
 
                         echo '<script type="text/javascript">';
-                        echo "setTimeout(function () { swal({title: 'Catagory Edit', text: 'Catagory Edited Successfully', type: 'success', confirmButtonClass: 'btn-success', confirmButtonText: 'OK', },function() {window.location = 'category.php';});";
+                        echo "setTimeout(function () { swal({title: 'Review Edit', text: 'Review Edited Successfully', type: 'success', confirmButtonClass: 'btn-success', confirmButtonText: 'OK', },function() {window.location = 'review.php';});";
                         echo '}, 1000);</script>';
                     }
                     ?>
