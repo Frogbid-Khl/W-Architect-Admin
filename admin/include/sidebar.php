@@ -31,15 +31,6 @@
                 </a>
                 <?php
             }
-            if ($_SESSION['role'] == 'admin' ) {
-                ?>
-                <div class="sb-sidenav-menu-heading">Admin</div>
-                <a class="nav-link" href="admin.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Admin
-                </a>
-                <?php
-            }
             ?>
         </div>
     </div>

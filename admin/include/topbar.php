@@ -21,7 +21,6 @@ if (!empty($_SESSION['name'])) {
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <?php if ($_SESSION['role'] == 'admin') { ?>
-                <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="setting.php">Setting</a></li>
             <?php } ?>
             <li>
