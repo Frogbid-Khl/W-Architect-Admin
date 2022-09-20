@@ -14,6 +14,11 @@ if (isset($_GET['portfolio_id'])) {
     echo 'success';
 }
 
+if (isset($_GET['contact_id'])) {
+    $db_handle->runQuery("delete FROM contact where id={$_GET['contact_id']}");
+    echo 'success';
+}
+
 if (isset($_GET['user_id'])) {
     $db_handle->runQuery("delete FROM admin_login where id={$_GET['user_id']}");
     echo 'success';
