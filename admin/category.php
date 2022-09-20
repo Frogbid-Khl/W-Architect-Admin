@@ -45,7 +45,7 @@ $db_handle = new DBController();
                                                 <div class="form-group">
                                                     <label class="form-label">Category Name</label>
                                                     <input name="Category_Name" type="text"
-                                                           value="<?php echo $data[0]["c_name"];; ?>"
+                                                           value="<?php echo $data[0]["c_name"]; ?>"
                                                            class="form-control"
                                                            data-validation="[NOTEMPTY]" required/>
                                                 </div>

@@ -17,37 +17,30 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Category
                 </a>
-                <a class="nav-link" href="product.php">
+                <a class="nav-link" href="portfolio.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Portfolio Add
+                    Portfolio
+                </a>
+                <a class="nav-link" href="review.php">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Review
+                </a>
+                <a class="nav-link" href="contact.php">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Contact
                 </a>
                 <?php
             }
             if ($_SESSION['role'] == 'admin' ) {
                 ?>
-                <div class="sb-sidenav-menu-heading">Order</div>
-                <a class="nav-link" href="order.php">
+                <div class="sb-sidenav-menu-heading">Admin</div>
+                <a class="nav-link" href="admin.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Pending Order
-
-                </a>
-                <a class="nav-link" href="orders.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Complete Order
-
-                </a>
-                <div class="sb-sidenav-menu-heading">Customer</div>
-                <a class="nav-link" href="user.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Customer
+                    Admin
                 </a>
                 <?php
             }
             ?>
-            <a class="nav-link" href="contact.php">
-                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                Customer Contact Info
-            </a>
         </div>
     </div>
     <div class="sb-sidenav-footer">
