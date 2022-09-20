@@ -19,6 +19,11 @@ if (isset($_GET['contact_id'])) {
     echo 'success';
 }
 
+if (isset($_GET['review_id'])) {
+    $db_handle->runQuery("delete FROM review where id={$_GET['review_id']}");
+    echo 'success';
+}
+
 if (isset($_GET['user_id'])) {
     $db_handle->runQuery("delete FROM admin_login where id={$_GET['user_id']}");
     echo 'success';
