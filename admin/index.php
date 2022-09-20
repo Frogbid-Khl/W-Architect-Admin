@@ -1,4 +1,7 @@
-<?php include('../include/dbconfig.php');
+<?php
+session_start();
+require_once("../include/dbcontroller.php");
+$db_handle = new DBController();
 if (isset($_SESSION['username'])) {
     header("Location: dashboard.php");
 }?>
@@ -54,20 +57,25 @@ if (isset($_SESSION['username'])) {
 </html>
 <?php
 if (isset($_POST['sub_log'])) {
+    $email = $db_handle->checkValue($_POST['inputEmail']);
+    $password = $db_handle->checkValue($_POST['inputPass']);
 
-    $email =mysqli_real_escape_string($con, $_POST['inputEmail']);
-    $pass = mysqli_real_escape_string($con,$_POST['inputPass']);
+    $login = $db_handle->numRows("SELECT * FROM admin_login WHERE email='$email' and password='$password'");
 
-    $sel = $con->query("select * from admin where username='" . $email . "' and password='" . $pass . "'")->num_rows;
+    $login_data = $db_handle->runQuery("SELECT * FROM admin_login WHERE email='$email' and password='$password'");
 
-    if ($sel != 0) {
-        $_SESSION['username'] = $email;
+    if($login==1){
+        $_SESSION['user_id']=$login_data[0]["id"];
+        $_SESSION['name']=$login_data[0]["name"];
+        $_SESSION['role']=$login_data[0]["role"];
+        $_SESSION['image']=$login_data[0]["image"];
+
         ?>
         <script>
             window.location.href = "dashboard.php";
         </script>
         <?php
-    } else {
+    }else{
         ?>
         <script>
             alert('email address and password wrong!');

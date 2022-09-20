@@ -1,4 +1,7 @@
-<?php include('../include/dbconfig.php') ?>
+<?php
+session_start();
+include('../include/dbController.php');
+?>
 <?php include('include/session.php') ?>
 <!DOCTYPE html>
 <html lang="en">

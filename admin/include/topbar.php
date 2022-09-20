@@ -1,23 +1,11 @@
 <?php
-if (!empty($_SESSION['username'])) {
-
-    $id = $_SESSION['username'];
-
-    $query = "SELECT * from admin WHERE username = '$id'";
-    $data = mysqli_query($con, $query);
-    $total = mysqli_num_rows($data);
-
-    $username = 0;
-    if ($total != 0) {
-        while ($result = mysqli_fetch_assoc($data)) {
-            $username = $result['user_type'];
-        }
-    }
+if (!empty($_SESSION['name'])) {
+    $id = $_SESSION['user_id'];
 }
 ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="dashboard.php">Farm Store</a>
+    <a class="navbar-brand ps-3" href="dashboard.php">Nirman</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -32,7 +20,7 @@ if (!empty($_SESSION['username'])) {
             <i class="fas fa-user fa-fw"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <?php if ($username == 0) { ?>
+            <?php if ($_SESSION['role'] == 'admin') { ?>
                 <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="setting.php">Setting</a></li>
             <?php } ?>

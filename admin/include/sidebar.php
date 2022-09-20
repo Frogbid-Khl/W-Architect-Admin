@@ -2,7 +2,7 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
 
-            <?php if ($username == 0 || $username == 1 || $username == 2) { ?>
+            <?php if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'sell') { ?>
                 <div class="sb-sidenav-menu-heading">Dashboards</div>
                 <a class="nav-link" href="dashboard.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -10,7 +10,7 @@
                 </a>
                 <?php
             }
-            if ($username == 0 || $username == 1) {
+            if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'sell') {
                 ?>
                 <div class="sb-sidenav-menu-heading">Product Info</div>
                 <a class="nav-link" href="category.php">
@@ -28,7 +28,7 @@
                 </a>
                 <?php
             }
-            if ($username == 0 || $username == 2) {
+            if ($_SESSION['role'] == 'admin' ) {
                 ?>
                 <div class="sb-sidenav-menu-heading">Order</div>
                 <a class="nav-link" href="order.php">
@@ -55,12 +55,9 @@
             </a>
         </div>
     </div>
-    <?php
-    $getkey = $con->query("select * from admin")->fetch_assoc();
-    ?>
     <div class="sb-sidenav-footer">
         <div class="small">Logged in as:</div>
-        <?php echo $getkey['username']; ?>
+        <?php echo $_SESSION['name']; ?>
     </div>
 
 </nav>

@@ -1,4 +1,8 @@
-<?php include('../include/dbconfig.php') ?>
+<?php
+session_start();
+include('../include/dbController.php');
+$db_handle = new DBController();
+?>
 <?php include('include/session.php') ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,164 +29,58 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
                 <div class="row">
-                    <?php
-                    if ($username == 0) {
-                        ?>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Total Category</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from category")->num_rows; ?>
-                                    </p>
-                                </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-primary text-white mb-4">
+                            <div class="card-body">Total Category</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <p class="small text-white stretched-link">
+                                    <?php
+                                    $row_count = $db_handle->numRows("SELECT * FROM category order by id desc");
+                                    echo $row_count;
+                                    ?>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Total Subcategory</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from subcategory")->num_rows; ?>
-                                    </p>
-                                </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-warning text-white mb-4">
+                            <div class="card-body">Total Contact</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <p class="small text-white stretched-link">
+                                    <?php
+                                    $row_count = $db_handle->numRows("SELECT * FROM contact order by id desc");
+                                    echo $row_count;
+                                    ?>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Total Product</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from product")->num_rows; ?>
-                                    </p>
-                                </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-success text-white mb-4">
+                            <div class="card-body">Total Portfolio Images</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <p class="small text-white stretched-link">
+                                    <?php
+                                    $row_count = $db_handle->numRows("SELECT * FROM portfolio order by id desc");
+                                    echo $row_count;
+                                    ?>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Total Customer</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from user")->num_rows; ?>
-                                    </p>
-                                </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card bg-danger text-white mb-4">
+                            <div class="card-body">Total Review</div>
+                            <div class="card-footer d-flex align-items-center justify-content-between">
+                                <p class="small text-white stretched-link">
+                                    <?php
+                                    $row_count = $db_handle->numRows("SELECT * FROM review order by id desc");
+                                    echo $row_count;
+                                    ?>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-info text-white mb-4">
-                                <div class="card-body">Pending Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='pending'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Complete Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='completed'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Canceled Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='cancelled'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Total Sales</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php $sales = $con->query("select sum(total) as full_total from orders where status='completed'")->fetch_assoc();
-
-                                        if ($sales['full_total'] == '') {
-                                            echo 0;
-                                        } else {
-                                            echo $sales['full_total'];
-                                        } ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    } else if ($username == 1) {
-                        ?>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Total Category</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from category")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Total Subcategory</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from subcategory")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body">Total Product</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from product")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body">Pending Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='pending'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">Complete Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='completed'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body">Canceled Order</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <p class="small text-white stretched-link">
-                                        <?php echo $con->query("select * from orders where status='cancelled'")->num_rows; ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                    </div>
                 </div>
             </div>
         </main>
