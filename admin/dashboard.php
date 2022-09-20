@@ -12,7 +12,7 @@ $db_handle = new DBController();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Dashboard - Farm Store</title>
+    <title>Dashboard - Nirman</title>
     <?php include('include/csslist.php') ?>
 </head>
 <body class="sb-nav-fixed">

@@ -12,19 +12,14 @@
             }
             if ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'sell') {
                 ?>
-                <div class="sb-sidenav-menu-heading">Product Info</div>
+                <div class="sb-sidenav-menu-heading">Nirman Info</div>
                 <a class="nav-link" href="category.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Category
                 </a>
-                <a class="nav-link" href="subcategory.php">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Subcategory
-                </a>
                 <a class="nav-link" href="product.php">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Product
-
+                    Portfolio Add
                 </a>
                 <?php
             }
